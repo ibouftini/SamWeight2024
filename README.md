@@ -3,14 +3,10 @@
 
 ## **Introduction**
 
-### **Overview**
-Breast cancer is a leading cause of mortality among women globally, emphasizing the critical role of early detection through mammography. This project leverages *Sample Weighting* and *AUC Reshaping* techniques to improve the sensitivity and specificity of deep learning models in detecting malignant regions in mammographic images.
-
-### **Challenges in Detection**
-In medical imaging, class imbalances and high misclassification costs (e.g., false negatives) pose significant challenges. Traditional performance metrics, such as the Area Under the Receiver Operating Characteristic (AU-ROC), fail to focus on critical regions of interest along the curve. This project addresses these issues using a novel AUC Reshaping strategy.
+Breast cancer is a leading cause of mortality among women globally, emphasizing the critical role of early detection through mammography. In medical imaging, class imbalances and high misclassification costs (e.g., false negatives) pose significant challenges. Traditional performance metrics, such as the Area Under the Receiver Operating Characteristic (AU-ROC), fail to focus on critical regions of interest along the curve. This project addresses these issues using a *Sample Weighting* technique to improve the sensitivity and specificity of deep learning models in detecting malignant regions in mammographic images.
 
 ### **Objectives**
-1. Develop and implement AUC Reshaping to optimize high-specificity sensitivity.
+1. Implement AUC Reshaping to optimize high-specificity sensitivity.
 2. Incorporate sample weighting during training to emphasize misclassified samples in critical regions of the ROC curve.
 3. Improve breast cancer detection performance using deep learning architectures tailored for mammographic patches.
 
@@ -18,14 +14,7 @@ In medical imaging, class imbalances and high misclassification costs (e.g., fal
 
 ## **Methods**
 
-### **Experimental Design**
-
-#### **Model Architecture**
-- **Base Model**: ResNet-22
-- **Attention Mechanism**: Convolutional Block Attention Module (CBAM)
-- **Input**: Segmented patches from mammographic images, targeting masses and calcifications.
-
-#### **Sample Weighting and AUC Reshaping**
+### **Sample Weighting and AUC Reshaping**
 To enhance model focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
 
 Let $\( y_i \in \{0, 1\} \)$ denote the true label and $\( p_i \)$ the predicted probability for sample $\( i \)$. The reshaped loss function is:
