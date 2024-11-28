@@ -1,6 +1,3 @@
-Based on the detailed insights from the referenced study, here is a revised and enhanced markdown document for your README file, written with a professional and scientific tone. It incorporates precise mathematical formulations, a robust description of methods, and the training protocol.
-
----
 
 # **SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques**
 
@@ -33,14 +30,12 @@ To enhance model focus on critical regions, we employ an adaptive weighting mech
 
 Let \( y_i \in \{0, 1\} \) denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
 
-\[
-\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],
+\[\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],
 \]
 
 where \( b_i \) represents the boosting value, defined as:
 
-\[
-b_i =
+\[b_i =
 \begin{cases}
 n, & \text{if } y_i = 1 \text{ and } p_i < \theta_{\text{max}}, \\
 0, & \text{otherwise.}
@@ -86,7 +81,3 @@ The reshaping and weighting techniques align the model's focus on diagnostically
 1. Bhat, S., et al. (2023). "AUCReshaping: improved sensitivity at high-specificity". *Scientific Reports*.
 2. He, K., et al. (2015). "Deep Residual Learning for Image Recognition".
 3. Woo, S., et al. (2018). "CBAM: Convolutional Block Attention Module".
-
----
-
-Let me know if further refinements are needed or if you want additional sections like implementation details or dataset description.
