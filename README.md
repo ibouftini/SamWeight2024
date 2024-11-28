@@ -1,4 +1,4 @@
-$$
+
 # **SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques**
 
 ## **Introduction**
@@ -28,23 +28,22 @@ In medical imaging, class imbalances and high misclassification costs (e.g., fal
 #### **Sample Weighting and AUC Reshaping**
 To enhance model focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
 
-Let \( y_i \in \{0, 1\} \) denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
+Let $\( y_i \in \{0, 1\} \)$ denote the true label and $\( p_i \)$ the predicted probability for sample $\( i \)$. The reshaped loss function is:
 
-\[\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],
-\]
+$$\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],$$
 
-where \( b_i \) represents the boosting value, defined as:
+where $\( b_i \)$ represents the boosting value, defined as:
 
-\[b_i =
+$$b_i =
 \begin{cases}
 n, & \text{if } y_i = 1 \text{ and } p_i < \theta_{\text{max}}, \\
 0, & \text{otherwise.}
 \end{cases}
-\]
+$$
 
 Here:
-- \( \theta_{\text{max}} \) is the high-specificity threshold.
-- \( n \) is the boosting factor, modulating the emphasis on misclassified positive samples.
+- $\( \theta_{\text{max}} \)$ is the high-specificity threshold.
+- $\( n \)$ is the boosting factor, modulating the emphasis on misclassified positive samples.
 
 #### **Mathematical Justification**
 The AUC Reshaping function selectively modifies the ROC curve within a *Region of Interest (ROI)*, typically at high-specificity thresholds (e.g., 0.95 or 0.98). By iteratively boosting sample weights, the function reduces false negatives without significantly increasing false positives.
@@ -58,7 +57,7 @@ The AUC Reshaping function selectively modifies the ROC curve within a *Region o
 3. **Initialization**:
    - Assign initial weights to all samples.
 4. **Iterative Weight Adjustment**:
-   - Boost weights for misclassified samples at \( \theta_{\text{max}} \) during training.
+   - Boost weights for misclassified samples at $\( \theta_{\text{max}} \)$ during training.
    - Optimize using the weighted cross-entropy loss function.
 5. **Evaluation**:
    - Measure sensitivity at fixed specificity thresholds (e.g., 95%, 98%).
@@ -81,4 +80,4 @@ The reshaping and weighting techniques align the model's focus on diagnostically
 1. Bhat, S., et al. (2023). "AUCReshaping: improved sensitivity at high-specificity". *Scientific Reports*.
 2. He, K., et al. (2015). "Deep Residual Learning for Image Recognition".
 3. Woo, S., et al. (2018). "CBAM: Convolutional Block Attention Module".
-$$
+
