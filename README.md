@@ -28,7 +28,7 @@ In medical imaging, class imbalances and high misclassification costs (e.g., fal
 #### **Sample Weighting and AUC Reshaping**
 To enhance model focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
 
-Let \( y_i \in \{0, 1\} \) denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
+Let $\( y_i \in \{0, 1\} \)$ denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
 
 \[\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],
 \]
