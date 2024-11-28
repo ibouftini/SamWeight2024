@@ -1,4 +1,4 @@
-
+$$
 # **SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques**
 
 ## **Introduction**
@@ -28,7 +28,7 @@ In medical imaging, class imbalances and high misclassification costs (e.g., fal
 #### **Sample Weighting and AUC Reshaping**
 To enhance model focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
 
-Let $\( y_i \in \{0, 1\} \)$ denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
+Let \( y_i \in \{0, 1\} \) denote the true label and \( p_i \) the predicted probability for sample \( i \). The reshaped loss function is:
 
 \[\mathcal{L} = - \sum_{i=1}^N \left[ y_i \log(p_i - b_i) + (1 - y_i) \log(1 - p_i + b_i) \right],
 \]
@@ -81,3 +81,4 @@ The reshaping and weighting techniques align the model's focus on diagnostically
 1. Bhat, S., et al. (2023). "AUCReshaping: improved sensitivity at high-specificity". *Scientific Reports*.
 2. He, K., et al. (2015). "Deep Residual Learning for Image Recognition".
 3. Woo, S., et al. (2018). "CBAM: Convolutional Block Attention Module".
+$$
