@@ -34,34 +34,17 @@ Here:
 - $\( \theta_{\text{max}} \)$ is the high-specificity threshold.
 - $\( n \)$ is the boosting factor, modulating the emphasis on misclassified positive samples.
 
-#### **Mathematical Justification**
 The AUC Reshaping function selectively modifies the ROC curve within a *Region of Interest (ROI)*, typically at high-specificity thresholds (e.g., 0.95 or 0.98). By iteratively boosting sample weights, the function reduces false negatives without significantly increasing false positives.
 
 ### **Training Protocol**
-1. **Patch Extraction**:
-   - Extract ROI patches from mammograms using segmentation.
-2. **Preprocessing**:
-   - Normalize intensity values.
-   - Apply augmentations (e.g., rotation, flipping).
-3. **Initialization**:
-   - Assign initial weights to all samples.
-4. **Iterative Weight Adjustment**:
-   - Boost weights for misclassified samples at $\( \theta_{\text{max}} \)$ during training.
-   - Optimize using the weighted cross-entropy loss function.
-5. **Evaluation**:
-   - Measure sensitivity at fixed specificity thresholds (e.g., 95%, 98%).
 
 ---
 
 ## **Results**
-*Pending implementation*. Preliminary expectations include:
-- Improved sensitivity in high-specificity regions.
-- Reduced false-negative rates without compromising specificity.
 
 ---
 
 ## **Discussion**
-The reshaping and weighting techniques align the model's focus on diagnostically critical regions, addressing imbalances inherent in medical datasets. This approach has the potential to significantly enhance clinical decision-making processes in mammography.
 
 ---
 
