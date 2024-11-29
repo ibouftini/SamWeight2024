@@ -1,5 +1,11 @@
+<div align="center">
+<h2>SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques</h2>
 
-# **SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques**
+[Imade Bouftini](github.com/ibouftini), [Ilyas Bounoua](), [Sacha bouchez-delotte](mailto:Sacha.bouchez-delotte@hera-mi.com)
+
+[Ecole Centrale de Nantes](https://www.ec-nantes.fr/) 
+</div>
+
 
 ## **Introduction**
 
@@ -10,7 +16,6 @@ Breast cancer is a leading cause of mortality among women globally, emphasizing 
 2. Incorporate sample weighting during training to emphasize misclassified samples in critical regions of the ROC curve.
 3. Improve breast cancer detection performance using deep learning architectures tailored for mammographic patches.
 
----
 
 ## **Methods**
 
@@ -38,15 +43,11 @@ The AUC Reshaping function selectively modifies the ROC curve within a *Region o
 
 ### **Training Protocol**
 
----
 
 ## **Results**
 
----
-
 ## **Discussion**
 
----
 
 ## **References**
 1. Bhat, S., et al. (2023). "AUCReshaping: improved sensitivity at high-specificity". *Scientific Reports*.
