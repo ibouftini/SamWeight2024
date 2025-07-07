@@ -179,6 +179,9 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
   <p><em>Left: Loss evolution over epochs | Right: Metrics evolution over epochs</em></p>
 </div>
 
+- We notice the high variability of loss/metrics likely due to the high penalty values.
+- The fixed metric (sensitivity) has some spikes due to the quantization of thresholds in ROC curve. The thresholds are chosen such that sensitivity is greater or equal to 90%.
+  
 ### Final Model Performance
 
 <div align="center">
@@ -198,9 +201,10 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
 
 ### Future Work
 
-🔮 **Enhanced Sensitivity**: Applying AUC Reshaping at higher sensitivity thresholds  
-🔮 **Adaptive Boosting**: Adding dynamic boosting factor adjustment  
-🔮 **Clinical Validation**: Measuring clinical significance and real-world impact  
+- Applying AUC Reshaping at higher sensitivity thresholds  
+- Adding dynamic boosting factor adjustment
+- Applying a regularization on threshold update (eg. moving average)
+- Measuring clinical significance and real-world impact  
 
 ---
 
