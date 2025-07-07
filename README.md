@@ -9,14 +9,13 @@
 
 <h3>📋 Table of Contents</h3>
 <p>
-  <a href="#introduction">📖 Introduction</a> •
-  <a href="#objectives">🎯 Objectives</a> •
-  <a href="#methods">⚙️ Methods</a> •
-  <a href="#results">📊 Results</a> •
-  <a href="#discussion">💬 Discussion</a> •
-  <a href="#references">🔗 References</a>
+  <a href="#-introduction">📖 Introduction</a> •
+  <a href="#-objectives">🎯 Objectives</a> •
+  <a href="#️-methods">⚙️ Methods</a> •
+  <a href="#-results">📊 Results</a> •
+  <a href="#-discussion">💬 Discussion</a> •
+  <a href="#-references">🔗 References</a>
 </p>
-
 </div>
 
 ---
