@@ -30,13 +30,40 @@ This project addresses these issues using a *Sample Weighting* technique to impr
 
 ### **Objectives**
 1. Develop and implement AUC Reshaping techniques to optimize model sensitivity at high-specificity thresholds.
-2. Integrate sample weighting into a fine-tuned deep learning model to emphasize misclassified samples in critical ROC regions.
-3. Evaluate the method quantitatively (e.g., sensitivity, specificity) and qualitatively (e.g., visual heatmaps of detected regions).
+2. Integrate AUC Reshaping into a fine-tuned deep learning model to emphasize misclassified samples in critical ROC regions.
+3. Evaluate the method quantitatively and qualitatively.
+
+## **SOTA Sample Weighting Approaches:**
+
+![Detection and Classification](Assets/sota.png)
+
+- **Static**: Fixed weights throughout training
+- **Dynamic**: Weights change based on model performance
 
 ## **Methods**
 
-### **Sample Weighting and AUC Reshaping**
-To enhance model focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
+### Approach
+
+The standard methodology for mammography treatement implies :
+1. **Bounding box detection** identifies suspicious areas
+2. **Classification model** determines malignancy probability *<- AUC Reshaping applied here*
+
+*[Image: Two-stage approach - Region detection followed by malignancy classification]*
+
+### **The classification model**
+The model we are going to work on is a state-of-the-art ResNet-22 [<a href="#ref-2">2</a>] with CBAM attention layers [<a href="#ref-3">3</a>]. Patches (small portions of a mammogram) containing masses and calcifications will be used to train this model [<a href="#ref-4">4</a>].
+
+
+
+The model incorporates **CBAM (Convolutional Block Attention Module)** attention mechanism to enhance feature representation:
+
+- **Channel Attention**: Focuses on the **"what"** aspect of features by selectively emphasizing informative feature channels
+- **Spatial Attention**: Focuses on the **"where"** aspect of features by identifying important regions in the feature maps
+
+
+
+### **AUC Reshaping**
+To enhance model's focus on critical regions, we employ an adaptive weighting mechanism informed by AUC Reshaping principles. This is mathematically formulated as follows:
 
 Let $\( y_i \in \{0, 1\} \)$ denote the true label and $\( p_i \)$ the predicted probability for sample $\( i \)$. The reshaped loss function is:
 
@@ -57,12 +84,85 @@ Here:
 
 The AUC Reshaping function selectively modifies the ROC curve within a *Region of Interest (ROI)*, typically at high-specificity thresholds (e.g., 0.95 or 0.98). By iteratively boosting sample weights, the function reduces false negatives without significantly increasing false positives.
 
-### **The predefined model**
-The model we are going to work on is a state-of-the-art ResNet-22 [<a href="#ref-2">2</a>] with CBAM attention layers [<a href="#ref-3">3</a>]. Patches (small portions of a mammogram) containing masses and calcifications will be used to train this model [<a href="#ref-4">4</a>].
+Practically, the training pipeline implements `θ_max` updates as a Keras Metric, enabling progressive batch-level threshold refinement throughout training.
 
-## **Results**
+## Training Workflow
 
-## **Discussion**
+
+*[Training workflow diagram would be displayed here]*
+
+## Implementation & Experimental Setup
+
+### Datasets and Experimental Design
+
+#### Training Data
+- **CBIS-DDSM**: 1,349 UIDs
+- **Zola (In-house)**: 1,233 UIDs  
+- **VinDr**: 1,042 UIDs
+- **Total Patches**: 6,622
+
+#### Validation Data
+- **INbreast**: 107 UIDs
+- **Total Patches**: 174
+
+*[Dataset distribution charts would be displayed here]*
+
+### Technical Implementation: Threshold Calculation Strategy
+
+We conducted systematic experiments to identify the optimal threshold updating method:
+
+- **Static approach**: Single calculation before training
+- **Epoch-level updates**: Recalculation at each epoch boundary
+- **Batch-level updates**: Dynamic adjustment during training
+
+> **Experimental Finding**: Batch-level threshold updates yielded superior performance.
+
+### Technical Implementation: Hardware Optimization
+
+For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 epochs.
+
+#### RTX 2080 Ti GPU Optimization Techniques
+
+| Optimization | Implementation | Benefit |
+|--------------|----------------|---------|
+| Mixed Precision Training | Working on `mixed_float16` | Up to 2-3x speedup via Tensor Cores |
+| Memory Management | Using Keras sequence | Optimized VRAM utilization, reduced CPU-GPU bottleneck |
+| Gradient Processing | Loss scaling with `LossScaleOptimizer` | Prevents underflow in FP16, maintains numerical stability |
+| GPU Optimized Libraries | TensorFlow native operations, CuPy instead of NumPy augmentation | Enhanced performance |
+
+> **Impact**: Optimization reduced training time from 200s to 122s per epoch
+
+## Results
+
+### Performance Metrics: AUC Reshaping Impact
+
+#### Model Comparison
+
+**Baseline Model:**
+- AUC: 0.92
+- Specificity@90% Sensitivity: 70.3%
+- PRAUC: 88.3%
+- F1-Score: 78.1%
+
+**AUC Reshaped Model:**
+- AUC: 0.937
+- Specificity@90% Sensitivity: 81.2%
+- PRAUC: 92.2%
+- F1-Score: 84.1%
+
+*[Loss evolution, metrics evolution, and ROC curves would be displayed here]*
+
+## Conclusion and Future Work
+
+### Key Contributions
+- Demonstrated significant improvement in specificity (+11%) at 90% sensitivity
+- Practical implementation with efficient GPU optimization
+
+### Future Work
+- Applying AUC Reshaping at higher sensitivity thresholds
+- Adding adaptive boosting factor
+- Measuring clinical significance
+
 
 
 ## **References**
@@ -73,3 +173,6 @@ The model we are going to work on is a state-of-the-art ResNet-22 [<a href="#ref
 <a id="ref-3"></a>[3] [Woo, S., et al. (2018). "CBAM: Convolutional Block Attention Module"](https://arxiv.org/abs/1807.06521).
 
 <a id="ref-4"></a>[4] [William Lotter, Greg Sorensen, and David Cox. "A Multi-Scale CNN and Curriculum Learning Strategy for Mammogram Classification"](https://arxiv.org/abs/1707.06978).
+
+
+
