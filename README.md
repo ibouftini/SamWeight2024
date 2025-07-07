@@ -48,11 +48,12 @@ The standard methodology for mammography treatement implies :
 1. **Bounding box detection** identifies suspicious areas
 2. **Classification model** determines malignancy probability *<- AUC Reshaping applied here*
 
-*[Image: Two-stage approach - Region detection followed by malignancy classification]*
+![Two-stage approach - Region detection followed by malignancy classification](Assets/detection+classification.png)
 
 ### **The classification model**
 The model we are going to work on is a state-of-the-art ResNet-22 [<a href="#ref-2">2</a>] with CBAM attention layers [<a href="#ref-3">3</a>]. Patches (small portions of a mammogram) containing masses and calcifications will be used to train this model [<a href="#ref-4">4</a>].
 
+![Two-stage approach - Region detection followed by malignancy classification](Assets/detection+classification.png)
 
 
 The model incorporates **CBAM (Convolutional Block Attention Module)** attention mechanism to enhance feature representation:
