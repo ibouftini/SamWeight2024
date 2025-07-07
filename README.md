@@ -1,9 +1,9 @@
 <div align="center">
 <h1>SamWeight: Optimizing Breast Cancer Detection with AUC Reshaping Techniques</h1>
 
-**Authors:** [Imade Bouftini](github.com/ibouftini) • [Ilyas Bounoua]() • [Sacha Bouchez-Delotte](mailto:Sacha.bouchez-delotte@hera-mi.com)
+**Contributors:** [Imade Bouftini](github.com/ibouftini) • [Ilyas Bounoua]() • [Sacha Bouchez-Delotte](mailto:Sacha.bouchez-delotte@hera-mi.com)
 
-**Institution:** [Ecole Centrale de Nantes](https://www.ec-nantes.fr/)
+**Institutions:** [Ecole Centrale de Nantes](https://www.ec-nantes.fr/)   &   [Hera-Mi](https://www.hera-mi.com/)
 
 ---
 
