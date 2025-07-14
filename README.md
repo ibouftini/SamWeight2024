@@ -179,7 +179,7 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
   <p><em>Left: Loss evolution over epochs | Right: Metrics evolution over epochs</em></p>
 </div>
 
-- We notice the high variability of loss/metrics likely due to the high penalty values.
+- We notice the high variability of loss/metrics likely due to the high penalty values and the diversity of of training data (samples from VinDr, DDSM, MIAS and an In-house artificial dataset).
 - The fixed metric (sensitivity) has some spikes due to the quantization of thresholds in ROC curve. The thresholds are chosen such that sensitivity is greater or equal to 90%.
   
 ### Final Model Performance
