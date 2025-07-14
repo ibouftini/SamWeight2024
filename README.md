@@ -20,7 +20,7 @@
 
 ---
 
-## Introduction
+## 📖 Introduction
 
 Breast cancer is a leading cause of mortality among women globally, emphasizing the critical role of early detection through mammography. In medical imaging, class imbalances and high misclassification costs (e.g., false negatives) pose significant challenges. Unfortunately, traditional performance metrics, such as the Area Under the Receiver Operating Characteristic (AU-ROC), fail to focus on critical regions of interest along the curve.
 
@@ -28,7 +28,7 @@ This project addresses these issues using a *Sample Weighting* technique to impr
 
 ---
 
-## Objectives
+## 🎯 Objectives
 
 1. **Develop and implement** AUC Reshaping techniques to optimize model sensitivity at high-specificity thresholds
 2. **Integrate AUC Reshaping** into a fine-tuned deep learning model to emphasize misclassified samples in critical ROC regions
@@ -111,7 +111,7 @@ n, & \text{if } y_i = 1 \text{ and } p_i < \theta_{\text{max}} \\
 
 ---
 
-## Implementation & Experimental Setup
+## 🛠️ Implementation & Experimental Setup
 
 ### Dataset Configuration
 
@@ -141,7 +141,7 @@ We systematically evaluated different threshold updating methods:
 - **Epoch-level updates**: Recalculation at each epoch boundary
 - **Batch-level updates**: Dynamic adjustment during training
 
-> **Experimental Finding**: Batch-level threshold updates yielded superior performance.
+> **🔍 Experimental Finding**: Batch-level threshold updates yielded superior performance.
 
 #### Hardware Optimization
 
@@ -156,11 +156,11 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
 | Gradient Processing | Loss scaling with `LossScaleOptimizer` | Prevents underflow in FP16, maintains numerical stability |
 | GPU Optimized Libraries | TensorFlow native operations, CuPy instead of NumPy | Enhanced performance |
 
-> ** Impact**: Optimization reduced training time from 200s to 122s per epoch
+> **⚡ Impact**: Optimization reduced training time from 200s to 122s per epoch
 
 ---
 
-## Results
+## 📊 Results
 
 ### Performance Metrics Comparison
 
@@ -191,7 +191,7 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
 
 ---
 
-## Discussion
+## 💬 Discussion
 
 ### Key Contributions
 
@@ -208,7 +208,7 @@ For effective AUC Reshaping, fine-tuning should be carried out over 1,000-2,000 
 
 ---
 
-## References
+## 🔗 References
 
 <a id="ref-1"></a>[1] [Nature Research Article on Breast Cancer Detection](https://www.nature.com/articles/s41598-023-48482-x)
 
